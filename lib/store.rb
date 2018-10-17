@@ -20,17 +20,28 @@ class Store
   end
 
   def find_book_by_name(book)
-    @books.find { |exist| exist.name == book[:name] }
+    book = @books.find { |exist| exist.name == book[:name] }
+
+    return false if book.to_s == ''
+
+    book.to_s
   end
 
   def find_book_by_genre(book)
-    @books.select { |exist| exist.genre == book[:genre] }
+    books = @books.select { |exist| exist.genre == book[:genre] }
+    result = ''
+    books.each { |exist| result += exist.to_s + "\n" }
+    
+    return false if result.to_s == ''
+
+    result
   end
 
   def add_book(book)
     book_f = find_book_by_name(book)
     if book_f
-      book_f.quantity += 1
+      book_c = @books.find { |exist| exist.name == book[:name] }
+      book_c.quantity += 1
     else
       book['quantity'] = 1
       @books.push(Book.new(book))

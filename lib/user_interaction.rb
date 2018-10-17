@@ -103,11 +103,11 @@ module UserInteraction
     book[:genre] = book[:name] = book['name or genre']
     if @store.find_book_by_name(book)
       puts 'Found by name:'
-      p @store.find_book_by_name(book)
+      puts @store.find_book_by_name(book)
     end
     if @store.find_book_by_genre(book)
       puts 'Found by genre:'
-      p @store.find_book_by_genre(book)
+      puts @store.find_book_by_genre(book)
     end
   end
 
